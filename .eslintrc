@@ -1,0 +1,67 @@
+{
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "plugins": ["import", "react", "react-hooks"],
+  "extends": ["eslint:recommended", "plugin:react/recommended", "prettier"],
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "rules": {
+    "import/prefer-default-export": 0,
+    "import/no-unresolved": 0,
+    "import/no-duplicates": 1,
+    "no-duplicate-imports": 1,
+    "import/no-namespace": 0,
+    "no-eval": 1,
+    "no-console": 1,
+    "no-debugger": 1,
+    "no-var": 1,
+    "no-use-before-define": 1,
+    "no-constant-condition": 0,
+    "no-duplicate-case": 1,
+    "no-unused-vars": 1,
+    "no-dupe-keys": 1,
+    "no-empty": 1,
+    "no-unreachable": 1,
+    "use-isnan": 2,
+    "valid-typeof": 1,
+    "eqeqeq": 1,
+    "no-alert": 1,
+    "no-eq-null": 1,
+    "no-redeclare": 1,
+    "curly": 1,
+    "semi": 1,
+    "no-empty-function": 0,
+    "object-shorthand": 0,
+    "default-case": 1,
+    "dot-notation": 1,
+    "dot-location": 0,
+    "no-compare-neg-zero": 1,
+    "no-dupe-args": 1,
+    "no-extra-semi": 1,
+    "no-extra-parens": 0,
+    "arrow-body-style": 0,
+    "operator-assignment": 0,
+    "prefer-const": 1,
+    "no-invalid-this": 0,
+    "no-else-return": 0,
+    "operator-assigment": 0,
+    "no-obj-calls": 1,
+    "no-self-assign": 1,
+    "react-hooks/exhaustive-deps": 0,
+    "block-spacing": 1,
+    "comma-spacing": 1,
+    "comma-style": 1,
+    "comma-dangle": 0,
+    "prefer-arrow-callback": 0
+  }
+}
