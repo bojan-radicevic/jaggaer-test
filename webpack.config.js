@@ -4,10 +4,15 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
+const dotenv = require('dotenv');
 
-module.exports = function (_env, argv) {
+module.exports = function (env, argv) {
   const isProduction = argv.mode === 'production';
   const isDevelopment = !isProduction;
+
+  dotenv.config({ path: isProduction ? '.env.production' : 'env.development' });
 
   return {
     devtool: isDevelopment && 'cheap-module-source-map',
@@ -15,7 +20,8 @@ module.exports = function (_env, argv) {
     output: {
       path: path.resolve(__dirname, 'build'),
       filename: 'assets/js/[name].[contenthash:8].js',
-      publicPath: '/'
+      publicPath: '/',
+      clean: true
     },
     module: {
       rules: [
@@ -85,7 +91,7 @@ module.exports = function (_env, argv) {
           use: ['@svgr/webpack']
         },
         {
-          test: /\.(eot|otf|ttf|woff|woff2)$/,
+          test: /\.(eot|otf|ttf|woff|woff2|ico)$/,
           loader: require.resolve('file-loader'),
           options: {
             name: 'static/media/[name].[hash:8].[ext]'
@@ -104,11 +110,34 @@ module.exports = function (_env, argv) {
         }),
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, 'public/index.html'),
-        inject: true
+        inject: true,
+        favicon: 'public/favicon.ico'
       }),
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(
           isProduction ? 'production' : 'development'
+        )
+      }),
+      new CopyPlugin({
+        patterns: [
+          {
+            from: path.join(__dirname, 'public', 'favicon.ico'),
+            to: path.resolve(__dirname, 'build')
+          },
+          {
+            from: path.resolve(__dirname, 'src/assets/data'),
+            to: path.resolve(__dirname, 'build/assets/data')
+          },
+          {
+            from: path.resolve(__dirname, 'src/assets/icons'),
+            to: path.resolve(__dirname, 'build/assets/icons')
+          }
+        ]
+      }),
+      new Dotenv({
+        path: path.resolve(
+          __dirname,
+          isProduction ? '.env.production' : '.env.development'
         )
       })
     ].filter(Boolean),

@@ -11,7 +11,17 @@ module.exports = {
   plugins: [
     '@babel/plugin-transform-runtime',
     '@babel/plugin-syntax-dynamic-import',
-    '@babel/plugin-transform-class-properties'
+    '@babel/plugin-transform-class-properties',
+    [
+      'module-resolver',
+      {
+        root: ['./src'],
+        alias: {
+          app: './src/app',
+          assets: './src/assets'
+        }
+      }
+    ]
   ],
   env: {
     production: {
