@@ -3,8 +3,12 @@
 This is a simple web app project in [React.js](https://reactjs.org/) bootstrapped with [Webpack](https://webpack.js.org/),
 using [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/).
 
+Code is deployed to GitHub https://github.com/bojan-radicevic/jaggaer-test.
+
 App is deployed to [Heroku](https://www.heroku.com/), and can be viewed on 
 the following link https://jaggaer-test-213702898a53.herokuapp.com/.
+
+[GitHub Actions](https://docs.github.com/en/actions) were used for CI/CD.
 
 ## Technical spec
 
