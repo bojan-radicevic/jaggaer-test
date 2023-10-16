@@ -13,7 +13,7 @@ export const BulletList = ({ feature, val }) => (
   <BulletContainer>
     <CircleIcon
       sx={{
-        width: '0.75rem'
+        width: '0.65rem'
       }}
     />
     <Typography variant="body1" color="#A9A9A9">

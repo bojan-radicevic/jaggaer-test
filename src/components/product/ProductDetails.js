@@ -68,7 +68,16 @@ export const ProductDetails = ({ article }) => (
         {article?.keywords.map(tag => (
           <ChipStyle
             key={tag}
-            label={<ChipLabelStyle>{tag}</ChipLabelStyle>}
+            label={
+              <ChipLabelStyle>
+                <Typography
+                  variant="body1"
+                  sx={{ fontSize: '0.75rem', fontWeight: 500 }}
+                >
+                  {tag.toUpperCase()}
+                </Typography>
+              </ChipLabelStyle>
+            }
             size="small"
           />
         ))}

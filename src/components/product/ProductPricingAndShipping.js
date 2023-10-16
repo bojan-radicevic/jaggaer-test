@@ -1,10 +1,20 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { Grid, Box, Divider, Typography } from '@mui/material';
+import {
+  Grid,
+  Box,
+  Divider,
+  Typography,
+  TableContainer,
+  Paper,
+  Table,
+  TableBody,
+  TableRow,
+  TableCell
+} from '@mui/material';
 
 import { Title } from 'components/ui/Title';
 import { BulletList } from 'components/ui/BulletList';
-import { PriceBreaks } from 'components/ui/PriceBreaks';
 
 const Wrapper = styled(Grid)({
   display: 'flex',
@@ -51,27 +61,34 @@ export const ProductPricingAndShipping = ({ article }) => (
       </Typography>
     </BoxMargin>
     <Box>
-      <PriceBreaks
-        qty={20}
-        disc={article.price_breaks[20]}
-        total={article.price}
-        currency={article.currency}
-        unit={article.unit}
-      />
-      <PriceBreaks
-        qty={50}
-        disc={article.price_breaks[50]}
-        total={article.price}
-        currency={article.currency}
-        unit={article.unit}
-      />
-      <PriceBreaks
-        qty={100}
-        disc={article.price_breaks[100]}
-        total={article.price}
-        currency={article.currency}
-        unit={article.unit}
-      />
+      <TableContainer
+        sx={{
+          display: 'flex',
+          borderTop: '1px solid #E0E0E0',
+          borderBottom: '1px solid #E0E0E0',
+          width: 'fit-content',
+          padding: 0
+        }}
+      >
+        <Table>
+          <TableBody>
+            {Object.entries(article?.price_breaks).map(([key, val]) => (
+              <TableRow
+                key={key}
+                sx={{
+                  '&:last-child td, &:last-child th': { border: 0 },
+                  '& td': { padding: '4px 16px 4px 4px' }
+                }}
+              >
+                <TableCell align="right">{`ex ${key} ${article.unit} `}</TableCell>
+                <TableCell align="left">{`${(article.price - val) / key} ${
+                  article.currency
+                }/${article.unit}`}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </Box>
   </Wrapper>
 );
