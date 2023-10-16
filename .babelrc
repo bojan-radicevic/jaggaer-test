@@ -1,0 +1,50 @@
+{
+  "presets": [
+  [
+    "@babel/preset-env",
+    {
+      "modules": false
+    }
+  ],
+  "@babel/preset-react"
+],
+  "plugins": [
+  "@babel/plugin-transform-runtime",
+  "@babel/plugin-syntax-dynamic-import",
+  "@babel/plugin-transform-class-properties",
+  [
+    "module-resolver",
+    {
+      "root": [
+        "./src"
+      ],
+      "alias": {
+        "app": "./src/app",
+        "assets": "./src/assets",
+        "store": "./src/store",
+        "util": "./src/util",
+        "components": "./src/components",
+        "pageshow": "./src/pages",
+        "theme": "./src/theme"
+      }
+    }
+  ]
+],
+  "env": {
+  "production": {
+    "only": [
+      "src"
+    ],
+      "plugins": [
+      [
+        "transform-react-remove-prop-types",
+        {
+          "removeImport": true
+        }
+      ],
+      "@babel/plugin-transform-react-inline-elements",
+      "@babel/plugin-transform-react-constant-elements"
+    ]
+  }
+}
+}

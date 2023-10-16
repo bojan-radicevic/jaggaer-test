@@ -62,6 +62,7 @@
     "comma-spacing": 1,
     "comma-style": 1,
     "comma-dangle": 0,
-    "prefer-arrow-callback": 0
+    "prefer-arrow-callback": 0,
+    "react/prop-types": 0
   }
 }
